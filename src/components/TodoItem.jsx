@@ -6,8 +6,8 @@ export default function TodoItem({
   return (
     <li key={todo.id}>
       {todo.text}
-      <button onClick={() => onEditClick(todo)}>Edit</button>
-      <button onClick={() => onDeleteClick(todo.id)}>Delete</button>
+      <button onClick={() => onEditClick(todo)}>編集</button>
+      <button onClick={() => onDeleteClick(todo.id)}>削除</button>
     </li>
   );
 }

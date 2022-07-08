@@ -5,12 +5,12 @@ export default function AddTodoForm({
 }) {
   return (
     <form onSubmit={onAddFormSubmit}>
-      <h2>Add Todo</h2>
-      <label htmlFor="todo">Create todo: </label>
+      <h2>Todoリスト</h2>
+      <label htmlFor="todo">新しくやることを追加: </label>
       <input
         name="todo"
         type="text"
-        placeholder="Create new todo"
+        placeholder="新しくやること"
         value={todo}
         onChange={onAddInputChange}
       />

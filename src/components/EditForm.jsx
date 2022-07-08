@@ -6,8 +6,8 @@ export default function EditForm({
 }) {
   return (
     <form onSubmit={onEditFormSubmit}>
-      <h2>Edit Todo</h2>
-      <label htmlFor="updateTodo">Update todo: </label>
+      <h2>やることを編集</h2>
+      <label htmlFor="updateTodo">やることを更新: </label>
       <input
         name="updateTodo"
         type="text"
@@ -16,9 +16,9 @@ export default function EditForm({
         onChange={onEditInputChange}
       />
       <button type="submit" onClick={onEditFormSubmit}>
-        Update
+        更新
       </button>
-      <button onClick={() => setIsEditing(false)}>Cancel</button>
+      <button onClick={() => setIsEditing(false)}>キャンセル</button>
     </form>
   );
 }
