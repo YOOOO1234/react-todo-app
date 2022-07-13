@@ -6,10 +6,12 @@
 ul {
   margin: 10px auto;
   padding: 0;
+  display:block
 }
 
 li {
   margin-bottom: 10px;
+  display: list-item
 }
 
 button {
