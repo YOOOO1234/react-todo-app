@@ -1,20 +1,20 @@
-import { Heading, Button } from '@chakra-ui/react'
+import { Heading,Input,FormControl,FormLabel,FormErrorMessage,FormHelperText, } from '@chakra-ui/react'
 export default function AddTodoForm({
   todo,
   onAddFormSubmit,
   onAddInputChange
 }) {
   return (
-    <form onSubmit={onAddFormSubmit}>
+    <FormControl onSubmit={onAddFormSubmit}>
       <Heading>Todoリスト</Heading>
-      <label htmlFor="todo">新しくやることを追加: </label>
-      <input
+      <FormLabel htmlFor="todo">新しくやることを追加: </FormLabel>
+      <Input
         name="todo"
         type="text"
         placeholder="新しくやること"
         value={todo}
         onChange={onAddInputChange}
       />
-    </form>
+    </FormControl>
   );
 }

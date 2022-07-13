@@ -16,10 +16,10 @@ export default function EditForm({
         value={currentTodo.text}
         onChange={onEditInputChange}
       />
-      <Button type="submit" onClick={onEditFormSubmit}>
+      <Button colorScheme='green'type="submit" onClick={onEditFormSubmit}>
         更新
       </Button>
-      <Button onClick={() => setIsEditing(false)}>キャンセル</Button>
+      <Button colorScheme='red'onClick={() => setIsEditing(false)}>キャンセル</Button>
     </form>
   );
 }
