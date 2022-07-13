@@ -1,3 +1,4 @@
+import { Heading, Button } from '@chakra-ui/react'
 export default function EditForm({
   currentTodo,
   setIsEditing,
@@ -6,7 +7,7 @@ export default function EditForm({
 }) {
   return (
     <form onSubmit={onEditFormSubmit}>
-      <h2>やることを編集</h2>
+      <Heading>やることを編集</Heading>
       <label htmlFor="updateTodo">やることを更新: </label>
       <input
         name="updateTodo"
@@ -15,10 +16,10 @@ export default function EditForm({
         value={currentTodo.text}
         onChange={onEditInputChange}
       />
-      <button type="submit" onClick={onEditFormSubmit}>
+      <Button type="submit" onClick={onEditFormSubmit}>
         更新
-      </button>
-      <button onClick={() => setIsEditing(false)}>キャンセル</button>
+      </Button>
+      <Button onClick={() => setIsEditing(false)}>キャンセル</Button>
     </form>
   );
 }

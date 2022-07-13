@@ -1,3 +1,4 @@
+import { Heading, Button } from '@chakra-ui/react'
 export default function AddTodoForm({
   todo,
   onAddFormSubmit,
@@ -5,7 +6,7 @@ export default function AddTodoForm({
 }) {
   return (
     <form onSubmit={onAddFormSubmit}>
-      <h2>Todoリスト</h2>
+      <Heading>Todoリスト</Heading>
       <label htmlFor="todo">新しくやることを追加: </label>
       <input
         name="todo"

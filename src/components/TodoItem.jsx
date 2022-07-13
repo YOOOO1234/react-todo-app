@@ -1,3 +1,4 @@
+import { Button, ButtonGroup } from '@chakra-ui/react'
 export default function TodoItem({
   todo,
   onEditClick,
@@ -6,8 +7,8 @@ export default function TodoItem({
   return (
     <li key={todo.id}>
       {todo.text}
-      <button onClick={() => onEditClick(todo)}>編集</button>
-      <button onClick={() => onDeleteClick(todo.id)}>削除</button>
+      <Button onClick={() => onEditClick(todo)}>編集</Button>
+      <Button onClick={() => onDeleteClick(todo.id)}>削除</Button>
     </li>
   );
 }
