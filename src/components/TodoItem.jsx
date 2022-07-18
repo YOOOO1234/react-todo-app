@@ -1,4 +1,4 @@
-import { Stack,Button } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 export default function TodoItem({
   todo,
   onEditClick,
