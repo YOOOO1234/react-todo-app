@@ -11,21 +11,35 @@ export default function App() {
       return [];
     }
   });
+  const [periods,setPeriods] = useState(() => {
+    const savedPeriods = localStorage.getItem("periods");
+    if (savedPeriods) {
+      return JSON.parse(savedPeriods);
+    } else {
+      return [];
+    }
+  });
   const [todo, setTodo] = useState("");
+  const [period,setPeriod] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
+  const [currentPeriod, setCurrentPeriod] = useState({});
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-
+    localStorage.setItem("periods", JSON.stringify(periods));
+  }, [todos, periods]);
+    
   function handleAddInputChange(e) {
-    setTodo(e.target.value);
+    setTodo(e.target.todo);
+    setPeriod(e.target.period);
   }
 
   function handleEditInputChange(e) {
-    setCurrentTodo({ ...currentTodo, text: e.target.value });
+    setCurrentTodo({ ...currentTodo, text: e.target.todo });
+    setCurrentPeriod({...currentPeriod, text: e.target.period})
     console.log(currentTodo);
+    console.log(currentPeriod);
   }
 
   function handleAddFormSubmit(e) {
@@ -39,15 +53,25 @@ export default function App() {
           text: todo.trim()
         }
       ]);
+    }else if(period !== "") {
+      setPeriods([
+        ...periods,
+        {
+          id: new Date(),
+          text: period.trim()
+        }
+      ]);
     }
 
     setTodo("");
+    setPeriod("");
   }
 
   function handleEditFormSubmit(e) {
     e.preventDefault();
 
     handleUpdateTodo(currentTodo.id, currentTodo);
+    handleUpdatePeriod(currentPeriod.id, currentPeriod);
   }
 
   function handleDeleteClick(id) {
@@ -65,9 +89,18 @@ export default function App() {
     setTodos(updatedItem);
   }
 
-  function handleEditClick(todo) {
+  function handleUpdatePeriod(id, updatedPeriod) { 
+    const updatedItem = todos.map((period) => {
+      return period.id === id ? updatedPeriod :period;
+    });
+    setIsEditing(false);
+    setPeriods(updatedItem);
+  }
+
+  function handleEditClick(todo, period) {
     setIsEditing(true);
     setCurrentTodo({ ...todo });
+    setCurrentPeriod({ ...period })
   }
 
   return (
@@ -75,6 +108,7 @@ export default function App() {
       {isEditing ? (
         <EditForm
           currentTodo={currentTodo}
+          currentPeriod={currentPeriod}
           setIsEditing={setIsEditing}
           onEditInputChange={handleEditInputChange}
           onEditFormSubmit={handleEditFormSubmit}
@@ -82,6 +116,7 @@ export default function App() {
       ) : (
         <AddTodoForm
           todo={todo}
+          period={period}
           onAddInputChange={handleAddInputChange}
           onAddFormSubmit={handleAddFormSubmit}
         />
