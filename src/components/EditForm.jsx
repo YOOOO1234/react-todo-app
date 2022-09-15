@@ -15,7 +15,7 @@ export default function EditForm({
         type="text"
         placeholder="やること"
         value={currentTodo.text}
-        onChange={onEditInputChange}
+        onChange={(e)=>onEditInputChange(e, "text")}
       />
       <Heading as='h4' size='md'>期限を編集</Heading>
       <label htmlFor="updatePeriod">期限を更新: </label>
@@ -24,7 +24,7 @@ export default function EditForm({
         type="text"
         placeholder="YYYY/MM/DD"
         value={currentPeriod.text}
-        onChange={onEditInputChange}
+        onChange={(e)=>onEditInputChange(e, "period")}
       />
       <Button colorScheme='green'type="submit" onClick={onEditFormSubmit}>
         更新

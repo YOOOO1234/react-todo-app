@@ -3,7 +3,7 @@ export default function AddTodoForm({
   todo,
   period,
   onAddFormSubmit,
-  onAddInputChange
+  onAddInputChange,
 }) {
   return (
     <form onSubmit={onAddFormSubmit}>
@@ -17,19 +17,14 @@ export default function AddTodoForm({
           maxW="450px" 
           placeholder="新しくやること"
           value={todo}
-          onChange={onAddInputChange}
+          onChange={(e)=>onAddInputChange(e, "todo")}
         />
       </FormLabel>
       <FormLabel textAlign={'center'} maxW="960px" mx="auto" htmlFor="period">期限を入力: 
         <Input
-          name="period"
-          type="text"
-          ml={2}
-          mx="auto"
-          maxW="450px" 
-          placeholder="YYYY/MM/DD"
-          value={period}
-          onChange={onAddInputChange}
+          placeholder="Select Date and Time"
+          size="md"
+          type="datetime-local"
         />
         <Button ml={2} colorScheme="green" onClick={onAddFormSubmit}>追加</Button>
       </FormLabel>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AddTodoForm, TodoItem, EditForm } from "./components";
+import { AddTodoForm, TodoItem, EditForm} from "./components";
 import "./styles.css";
 
 export default function App() {
@@ -31,15 +31,17 @@ export default function App() {
   }, [todos, periods]);
     
   function handleAddInputChange(e) {
-    setTodo(e.target.todo);
-    setPeriod(e.target.period);
+    console.log('e',e);
+    console.log(e.target.value);
+    setTodo( { ...todo, [e.target.value]: e.target.value});
+    //setPeriods( { ...period, [e.target.value]: e.target.value});
+    //console.log(e.target.value);
   }
 
-  function handleEditInputChange(e) {
-    setCurrentTodo({ ...currentTodo, text: e.target.todo });
-    setCurrentPeriod({...currentPeriod, text: e.target.period})
+  function handleEditInputChange(e,text) {
+    setCurrentTodo({ ...currentTodo, [text]: e.target.value });
+    setCurrentPeriod({ ...currentPeriod, [text]: e.target.value });
     console.log(currentTodo);
-    console.log(currentPeriod);
   }
 
   function handleAddFormSubmit(e) {
@@ -90,7 +92,7 @@ export default function App() {
   }
 
   function handleUpdatePeriod(id, updatedPeriod) { 
-    const updatedItem = todos.map((period) => {
+    const updatedItem = periods.map((period) => {
       return period.id === id ? updatedPeriod :period;
     });
     setIsEditing(false);
@@ -110,22 +112,23 @@ export default function App() {
           currentTodo={currentTodo}
           currentPeriod={currentPeriod}
           setIsEditing={setIsEditing}
-          onEditInputChange={handleEditInputChange}
+          onEditTodoInputChange={handleEditInputChange}
+          onEditPeriodInputChange={handleEditInputChange}
           onEditFormSubmit={handleEditFormSubmit}
         />
       ) : (
         <AddTodoForm
           todo={todo}
-          period={period}
           onAddInputChange={handleAddInputChange}
           onAddFormSubmit={handleAddFormSubmit}
         />
       )}
 
       <ul className="todo-list">
-        {todos.map((todo) => (
+        {todos.map((todo,period) => (
           <TodoItem
             todo={todo}
+            period={period}
             onEditClick={handleEditClick}
             onDeleteClick={handleDeleteClick}
           />
