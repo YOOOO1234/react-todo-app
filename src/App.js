@@ -33,11 +33,12 @@ export default function App() {
   function handleAddInputChange(e) {
     console.log('e',e);
     console.log(e.target.value);
-    setTodo( { ...todo, [e.target.value]: e.target.value});
-    //setPeriods( { ...period, [e.target.value]: e.target.value});
-    //console.log(e.target.value);
+    setTodo( { ...todo, text: e.target.value});
   }
-
+  function handlePeriodInputChange(e) {
+    console.log('e',e);
+    setTodo( { ...todo, period: e.target.value });
+  }
   function handleEditInputChange(e,text) {
     setCurrentTodo({ ...currentTodo, [text]: e.target.value });
     setCurrentPeriod({ ...currentPeriod, [text]: e.target.value });
@@ -52,15 +53,17 @@ export default function App() {
         ...todos,
         {
           id: new Date(),
-          text: todo.trim()
+          text: todo.text.trim(),
+          period: todo.period
         }
       ]);
     }else if(period !== "") {
-      setPeriods([
-        ...periods,
+      setTodos([
+        ...todos,
         {
           id: new Date(),
-          text: period.trim()
+          text: todo.text.trim(),
+          period: todo.period
         }
       ]);
     }
@@ -68,7 +71,7 @@ export default function App() {
     setTodo("");
     setPeriod("");
   }
-
+  console.log(todos)
   function handleEditFormSubmit(e) {
     e.preventDefault();
 
@@ -106,7 +109,7 @@ export default function App() {
   }
 
   return (
-    <div className="App">
+    <div>
       {isEditing ? (
         <EditForm
           currentTodo={currentTodo}
@@ -120,6 +123,7 @@ export default function App() {
         <AddTodoForm
           todo={todo}
           onAddInputChange={handleAddInputChange}
+          onAddPeriodInputChange={handlePeriodInputChange}
           onAddFormSubmit={handleAddFormSubmit}
         />
       )}
@@ -128,6 +132,7 @@ export default function App() {
         {todos.map((todo,period) => (
           <TodoItem
             todo={todo}
+            // key={todo}
             period={period}
             onEditClick={handleEditClick}
             onDeleteClick={handleDeleteClick}

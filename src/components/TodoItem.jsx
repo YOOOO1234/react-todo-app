@@ -10,6 +10,7 @@ export default function TodoItem({
         <SimpleGrid columns={2} spacing={10}>
           <Box>
             {todo.text} 
+            {todo?.period} 
           </Box>
           <Box>
             <Button ml={2} color='#4299E1' onClick={() => onEditClick(todo)}>編集</Button>

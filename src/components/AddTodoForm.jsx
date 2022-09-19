@@ -4,6 +4,7 @@ export default function AddTodoForm({
   period,
   onAddFormSubmit,
   onAddInputChange,
+  onAddPeriodInputChange
 }) {
   return (
     <form onSubmit={onAddFormSubmit}>
@@ -16,7 +17,7 @@ export default function AddTodoForm({
           mx="auto"
           maxW="450px" 
           placeholder="新しくやること"
-          value={todo}
+          value={todo.text}
           onChange={(e)=>onAddInputChange(e, "todo")}
         />
       </FormLabel>
@@ -25,6 +26,8 @@ export default function AddTodoForm({
           placeholder="Select Date and Time"
           size="md"
           type="datetime-local"
+          value={todo.period}
+          onChange={(e)=>onAddPeriodInputChange(e, "period")}
         />
         <Button ml={2} colorScheme="green" onClick={onAddFormSubmit}>追加</Button>
       </FormLabel>
